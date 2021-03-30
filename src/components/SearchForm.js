@@ -7,12 +7,15 @@ import { addDestination } from '../actions/destinationActions';
 import { selectDestination } from '../reducers/destinationReducer';
 import { addLeavingDate } from '../actions/leavingDateActions';
 import { selectLeavingDate } from '../reducers/dateLeavingReducer';
+import { addDateReturning } from '../actions/dateReturningAction';
+import { selectDateReturning } from '../reducers/dateReturningReducer';
 
 const SearchForm = () => {
   // variable containing the values of the different slices of state
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
   const leavingDate = useSelector(selectLeavingDate);
+  const dateReturning = useSelector(selectDateReturning);
 
   const dispatch = useDispatch();
 
@@ -29,9 +32,12 @@ const SearchForm = () => {
   const changeLeavingDate = e => {
     const userInput = e.target.value;
     dispatch(addLeavingDate(userInput));
-    console.log(leavingDate);
   }
 
+  const changeDateReturning = e => {
+    const userInput = e.target.value;
+    dispatch(addDateReturning(userInput))
+  }
   return (
     <div id="searchForm">
       <form>
@@ -42,7 +48,7 @@ const SearchForm = () => {
         <label>Leaving</label>
         <input type="date" name="dateLeaving" value={leavingDate} onChange={changeLeavingDate} />
         <label>Returning</label>
-        <input type="date" name="dateReturning" />
+        <input type="date" name="dateReturning" value={dateReturning} onChange={changeDateReturning}/>
         <button>Search</button>
       </form>
     </div>

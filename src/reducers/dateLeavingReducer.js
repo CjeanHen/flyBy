@@ -1,12 +1,9 @@
-let initialDate;
+const initialDate = null;
 
 export const dateLeavingReducer = (state = initialDate, action) => {
   switch (action.type) {
     case 'addLeavingDate':
-      return {
-        type: 'addLeavingDate',
-        payload: action.payload
-      };
+      return action.payload
     default:
       return state;
   }
